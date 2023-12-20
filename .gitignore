@@ -1,0 +1,35 @@
+###############################################################################
+# Ignore these directories
+###############################################################################
+
+coverage/
+node_modules/
+
+###############################################################################
+# Accept these files
+###############################################################################
+
+!.editorconfig
+!.gitignore
+!.nvmrc
+!.prettierignore
+!.prettierrc
+!.vscode
+!.ebextensions
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+
+###############################################################################
+# Ignore these files
+###############################################################################
+
+deploy.zip
+!.*/
+.local-database
+.pnp.*
+*.log
+!.eslintrc.cjs

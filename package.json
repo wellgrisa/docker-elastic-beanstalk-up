@@ -1,0 +1,16 @@
+{
+  "name": "docker-elastic-beanstalk-up",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/wellgrisa/docker-elastic-beanstalk-up.git",
+  "author": "Wellington Grisa <wellington.grisa@gmail.com>",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "api": "yarn --cwd packages/api",
+    "ui": "yarn --cwd packages/ui"
+  },
+  "license": "MIT"
+}
