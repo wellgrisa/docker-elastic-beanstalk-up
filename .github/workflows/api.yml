@@ -19,5 +19,5 @@ jobs:
       - name: Configure AWS credentials from Test account
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::184503795422:role/docker-elastic-beanstalk-up-ecr-role
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
           aws-region: us-east-1
