@@ -1,0 +1,19 @@
+name: api
+
+on:
+  push:
+    branches: ["ci"]
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: deploy
+    needs: unit-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials from Test account
+      - run: echo ">>>>"
