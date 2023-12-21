@@ -27,12 +27,18 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-      # - name: Sending API Docker image
-      #   env:
-      #     REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-      #     PACKAGE_NAME: api
-      #     REPOSITORY: docker-elastic-beanstalk-up
-      #   run: yarn push-docker
+      - name: Sending API Docker image
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          PACKAGE_NAME: api
+          REPOSITORY: docker-elastic-beanstalk-up
+        run: yarn push-docker
+
+      - name: Add profile credentials to ~/.aws/credentials
+        run: |
+          aws configure set aws_access_key_id ${{ env.AWS_ACCESS_KEY_ID }} --profile eb-cli
+          aws configure set aws_secret_access_key ${{ env.AWS_SECRET_ACCESS_KEY }} --profile eb-cli
+          aws configure set aws_session_token ${{ env.AWS_SESSION_TOKEN }} --profile eb-cli
 
       - name: Deploy🤞
         run: yarn deploy
