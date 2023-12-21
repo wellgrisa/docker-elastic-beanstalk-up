@@ -27,12 +27,12 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Sending API Docker image
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          PACKAGE_NAME: api
-          REPOSITORY: docker-elastic-beanstalk-up
-        run: yarn push-docker
+      # - name: Sending API Docker image
+      #   env:
+      #     REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      #     PACKAGE_NAME: api
+      #     REPOSITORY: docker-elastic-beanstalk-up
+      #   run: yarn push-docker
 
       - name: Add profile credentials to ~/.aws/credentials
         run: |
