@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "api": "yarn --cwd packages/api",
-    "ui": "yarn --cwd packages/ui"
+    "ui": "yarn --cwd packages/ui",
+    "push-docker": "bash ci/push-docker-image.sh"
   },
   "license": "MIT"
 }
