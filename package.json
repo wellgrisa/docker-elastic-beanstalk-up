@@ -11,7 +11,8 @@
   "scripts": {
     "api": "yarn --cwd packages/api",
     "ui": "yarn --cwd packages/ui",
-    "push-docker": "bash ci/push-docker-image.sh"
+    "push-docker": "bash ci/push-docker-image.sh",
+    "deploy": "bash ci/deploy.sh"
   },
   "license": "MIT"
 }
