@@ -12,9 +12,9 @@ services:
       - this-is-the-ui-service-name
 
   this-is-the-api-service-name:
-    image: really-api
+    image: this-is-the-api-image-name
 
   this-is-the-ui-service-name:
-    image: really-ui
+    image: this-is-the-ui-image-name
     environment:
       API_URL: http://this-is-the-api-service-name:5000
