@@ -1,5 +1,5 @@
 name: Add profile credentials to ~/.aws/credentials
-description: 'adding profile to eb cli'
+description: "adding profile to eb cli"
 outputs:
   ecr-registry:
     description: "Random number"
@@ -7,13 +7,13 @@ outputs:
 runs:
   using: "composite"
   steps:
-      - name: Configure AWS credentials from Test account
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: arn:aws:iam::184503795422:role/development-github-oidc-belovedl-ings
-          aws-region: us-east-1
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-      - name: Add profile credentials
-        uses: ./.github/actions/add-profile-credentials
+    - name: Configure AWS credentials from Test account
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+        aws-region: us-east-1
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+    - name: Add profile credentials
+      uses: ./.github/actions/add-profile-credentials
