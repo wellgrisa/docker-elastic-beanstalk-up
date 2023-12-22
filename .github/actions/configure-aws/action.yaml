@@ -6,7 +6,7 @@ inputs:
     required: true
 outputs:
   ecr-registry:
-    description: "Random number"
+    description: "ECR Registry"
     value: ${{ steps.login-ecr.outputs.registry }}
 runs:
   using: "composite"

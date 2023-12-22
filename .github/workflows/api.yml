@@ -26,7 +26,7 @@ jobs:
 
       - name: Sending API Docker image
         env:
-          REGISTRY: ${{ steps.configure-aws.outputs.registry }}
+          REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
           PACKAGE_NAME: api
           REPOSITORY: docker-elastic-beanstalk-up
         run: yarn push-docker
