@@ -1,9 +1,7 @@
 deploy:
   artifact: deploy.zip
 branch-defaults:
-  ci:
-    environment: docker-elastic-beanstalk-up-dev
-  evolve-ci-docker-compose:
+  main:
     environment: docker-elastic-beanstalk-up-dev
 global:
   application_name: docker-elastic-beanstalk-up
