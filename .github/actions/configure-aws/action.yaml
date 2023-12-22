@@ -14,7 +14,7 @@ runs:
     - name: Configure AWS credentials from Test account
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        role-to-assume: ${{ inputs.who-to-greet }}
+        role-to-assume: ${{ inputs.role-to-assume }}
         aws-region: us-east-1
     - name: Login to Amazon ECR
       id: login-ecr
