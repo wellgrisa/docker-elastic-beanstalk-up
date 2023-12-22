@@ -33,6 +33,6 @@ jobs:
 
       - name: Deploy🤞
         env:
-          UI_IMAGE: ${{ secrets.UI_IMAGE }}
-          API_IMAGE: ${{ secrets.API_IMAGE }}
+          REGISTRY: ${{ steps.configure-aws.outputs.registry }}
+          REPOSITORY: docker-elastic-beanstalk-up
         run: yarn deploy
