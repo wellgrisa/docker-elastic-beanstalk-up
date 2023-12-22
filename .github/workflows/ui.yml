@@ -2,9 +2,7 @@ name: Ui
 
 on:
   push:
-    branches: ["main"]
-    paths:
-      - "ui/**"
+    branches: ["evolve-ci-docker-compose"]
 
   workflow_dispatch:
 
@@ -35,7 +33,6 @@ jobs:
 
       - name: Deploy🤞
         env:
-          REGISTRY: ${{ steps.configure-aws.outputs.registry }}
-          PACKAGE_NAME: ui
+          REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
           REPOSITORY: docker-elastic-beanstalk-up
         run: yarn deploy
