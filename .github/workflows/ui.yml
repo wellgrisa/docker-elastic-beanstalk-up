@@ -26,7 +26,7 @@ jobs:
 
       - name: Sending UI Docker image
         env:
-          REGISTRY: ${{ steps.configure-aws.outputs.registry }}
+          REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
           PACKAGE_NAME: ui
           REPOSITORY: docker-elastic-beanstalk-up
         run: yarn push-docker
