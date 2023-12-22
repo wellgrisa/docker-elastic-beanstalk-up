@@ -8,6 +8,10 @@ deploy_to_elastic() {
   API_IMAGE=$REGISTRY/$REPOSITORY:api-$GITHUB_REF_NAME
   UI_IMAGE=$REGISTRY/$REPOSITORY:ui-$GITHUB_REF_NAME
 
+  echo ">>>>>"
+  echo $REGISTRY
+  echo $REPOSITOY
+
   ESCAPED_API_IMAGE=$(echo "$API_IMAGE" | sed 's/[\/&]/\\&/g')
   ESCAPED_UI_IMAGE=$(echo "$UI_IMAGE" | sed 's/[\/&]/\\&/g')
 
