@@ -20,7 +20,7 @@ jobs:
 
       - name: Configure AWS
         id: configure-aws
-        uses: ./.github/actions/configure-aws
+        uses: ./actions/configure-aws
 
       - name: Sending UI Docker image
         env:
