@@ -1,5 +1,9 @@
 name: Add profile credentials to ~/.aws/credentials
 description: "adding profile to eb cli"
+inputs:
+  role-to-assume:
+    description: "Role to Assume"
+    required: true
 outputs:
   ecr-registry:
     description: "Random number"
@@ -10,7 +14,7 @@ runs:
     - name: Configure AWS credentials from Test account
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+        role-to-assume: ${{ inputs.who-to-greet }}
         aws-region: us-east-1
     - name: Login to Amazon ECR
       id: login-ecr

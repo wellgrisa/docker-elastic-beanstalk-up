@@ -21,6 +21,8 @@ jobs:
       - name: Configure AWS
         id: configure-aws
         uses: ./.github/actions/configure-aws
+        with:
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
 
       - name: Sending API Docker image
         env:

@@ -21,10 +21,15 @@ jobs:
       - name: Configure AWS
         id: configure-aws
         uses: ./.github/actions/configure-aws
+        with:
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
 
       - name: Sending UI Docker image
         env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REGISTRY: ${{ steps.configure-aws.outputs.registry }}
           PACKAGE_NAME: ui
           REPOSITORY: docker-elastic-beanstalk-up
         run: yarn push-docker
+
+      - name: Deploy🤞
+        run: yarn deploy
