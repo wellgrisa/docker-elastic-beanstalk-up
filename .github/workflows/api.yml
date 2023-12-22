@@ -1,8 +1,10 @@
-name: api
+name: Api
 
 on:
   push:
-    branches: ["ci"]
+    branches: ["main"]
+    paths:
+      - "api/**"
 
   workflow_dispatch:
 
