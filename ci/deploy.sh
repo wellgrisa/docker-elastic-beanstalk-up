@@ -7,7 +7,7 @@ deploy_to_elastic() {
 
   TAG=$PACKAGE_NAME-$GITHUB_REF_NAME
 
-  $IMAGE=$REGISTRY/$REPOSITORY:$TAG
+  IMAGE=$REGISTRY/$REPOSITORY:$TAG
 
   sed -e "s/\${IMAGE}/$IMAGE/g" Dockerrun.template.aws.json > Dockerrun.aws.json
 
