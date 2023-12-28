@@ -3,10 +3,5 @@
   "Image": {
     "Name": "${IMAGE}",
     "Update": "true"
-  },
-  "Ports": [
-    {
-      "ContainerPort": 5000
-    }
-  ]
+  }
 }
