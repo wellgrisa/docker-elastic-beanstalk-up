@@ -3,7 +3,7 @@ deploy:
 branch-defaults:
   ci:
     environment: docker-elastic-beanstalk-up-dev
-  evolve-ci-docker-compose:
+  dockerrun.aws.json:
     environment: docker-elastic-beanstalk-up-dev
 global:
   application_name: docker-elastic-beanstalk-up
