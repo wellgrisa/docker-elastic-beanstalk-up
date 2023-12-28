@@ -9,7 +9,9 @@ deploy_to_elastic() {
 
   IMAGE=$REGISTRY/$REPOSITORY:$TAG
 
-  sed -e "s/\${IMAGE}/$IMAGE/g" Dockerrun.template.aws.json > Dockerrun.aws.json
+  ESCAPED_API_IMAGE=$(echo "$IMAGE" | sed 's/[\/&]/\\&/g')
+
+  sed -e "s/\${IMAGE}/$ESCAPED_API_IMAGE/g" Dockerrun.template.aws.json > Dockerrun.aws.json
 
   eb deploy --staged
 }
