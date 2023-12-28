@@ -7,6 +7,7 @@
   "scripts": {
     "build": "rm -rf ./dist && tsc -p tsconfig.build.json && npx tsc-alias -p tsconfig.build.json",
     "start": "node server.js",
+    "build-docker": "echo $REPOSITORY",
     "dev": "ts-node-dev --files --poll --no-notify --watch -r tsconfig-paths/register src/server.ts"
   },
   "dependencies": {
