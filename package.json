@@ -14,5 +14,9 @@
     "push-docker": "bash ci/push-docker-image.sh",
     "deploy": "bash ci/deploy.sh"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^8.0.1"
+  }
 }
