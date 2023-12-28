@@ -1,9 +1,7 @@
 deploy:
-  artifact: Dockerrun.aws.json
+  artifact: deploy.zip
 branch-defaults:
-  ci:
-    environment: docker-elastic-beanstalk-up-dev
-  evolve-ci-docker-compose:
+  deploy-dynamic-docker-compose:
     environment: docker-elastic-beanstalk-up-dev
 global:
   application_name: docker-elastic-beanstalk-up

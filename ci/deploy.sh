@@ -5,15 +5,19 @@ set -e
 deploy_to_elastic() {
   pip install awsebcli
 
-  TAG=$PACKAGE_NAME-$GITHUB_REF_NAME
+  API_IMAGE=$REGISTRY/$REPOSITORY:api-$GITHUB_REF_NAME
+  UI_IMAGE=$REGISTRY/$REPOSITORY:ui-$GITHUB_REF_NAME
 
-  IMAGE=$REGISTRY/$REPOSITORY:$TAG
+  ESCAPED_API_IMAGE=$(echo "$API_IMAGE" | sed 's/[\/&]/\\&/g')
+  ESCAPED_UI_IMAGE=$(echo "$UI_IMAGE" | sed 's/[\/&]/\\&/g')
 
-  ESCAPED_API_IMAGE=$(echo "$IMAGE" | sed 's/[\/&]/\\&/g')
+  sed -e "s/\${API_IMAGE}/$ESCAPED_API_IMAGE/g" -e "s/\${UI_IMAGE}/$ESCAPED_UI_IMAGE/g" docker-compose.template.yml > docker-compose.yml
 
-  sed -e "s/\${IMAGE}/$ESCAPED_API_IMAGE/g" Dockerrun.template.aws.json > Dockerrun.aws.json
+  cat docker-compose.yml
 
-  eb deploy --staged
+  zip deploy.zip docker-compose.yml default.conf -r
+
+  eb deploy
 }
 
 deploy_to_elastic
