@@ -1,5 +1,5 @@
 deploy:
-  artifact: deploy.zip
+  artifact: Dockerrun.aws.json
 branch-defaults:
   ci:
     environment: docker-elastic-beanstalk-up-dev
