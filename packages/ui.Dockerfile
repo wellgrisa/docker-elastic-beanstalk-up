@@ -1,5 +1,7 @@
 FROM node:20-alpine as base
 
+ARG CACHEBUST=1
+
 WORKDIR /usr/src/app
 
 COPY yarn.lock .
