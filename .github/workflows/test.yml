@@ -23,6 +23,7 @@ jobs:
         uses: ./.github/actions/configure-aws
         with:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+      - run: yarn
 
       - name: Sending API Docker image
         env:
