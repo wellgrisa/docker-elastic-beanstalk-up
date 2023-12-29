@@ -8,7 +8,13 @@ TAG=$PACKAGE_NAME-$GITHUB_REF_NAME
 build_docker_image() {
   echo "Building docker image $REGISTRY/$REPOSITORY:$TAG"
 
-  docker build -t $REGISTRY/$REPOSITORY:$TAG -f ../packages/$PACKAGE_NAME.Dockerfile .
+  ls 
+
+  ls ../
+
+  ls ../../
+
+  docker build -t $REGISTRY/$REPOSITORY:$TAG -f ../../packages/$PACKAGE_NAME.Dockerfile .
 }
 
 push_docker_image_to_ecr() {
