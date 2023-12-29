@@ -10,7 +10,7 @@ build_docker_image() {
 
   ls ../../
 
-  docker build -t $REGISTRY/$REPOSITORY:$TAG -f --no-cache ../../packages/$PACKAGE_NAME.Dockerfile .
+  docker build -t $REGISTRY/$REPOSITORY:$TAG -f ../../packages/$PACKAGE_NAME.Dockerfile . --no-cache
 }
 
 push_docker_image_to_ecr() {
