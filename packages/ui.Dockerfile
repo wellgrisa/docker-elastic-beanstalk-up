@@ -2,6 +2,8 @@ FROM node:20-alpine as base
 
 WORKDIR /usr/src/app
 
+RUN echo ${PWD} && ls -lR
+
 COPY yarn.lock .
 COPY package.json .
 
