@@ -20,7 +20,9 @@ jobs:
       - run: yarn
 
       - name: Version
-        run: yarn lerna version --conventional-commits --no-commit-hooks --yes
+        run: |
+          git config user.name "${{ github.actor }}"
+          yarn lerna version --conventional-commits --no-commit-hooks --yes
 
       # - name: Configure AWS
       #   id: configure-aws
