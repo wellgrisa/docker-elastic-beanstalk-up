@@ -2,8 +2,8 @@ name: Test
 
 on:
   push:
-    branches: ["include-lerna"]
     tags-ignore: ["**", "*"]
+    branches: ["include-lerna"]
 
   workflow_dispatch:
 
