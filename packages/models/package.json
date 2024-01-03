@@ -1,6 +1,6 @@
 {
   "name": "models",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "main": "src/index.ts",
   "license": "MIT",
   "private": true,
