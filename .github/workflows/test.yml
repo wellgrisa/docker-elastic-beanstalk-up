@@ -23,6 +23,7 @@ jobs:
         run: |
           yarn
           git config user.name "${{ github.actor }}"
+          git config user.email "wellington.grisa@gmail.com"
           yarn lerna version --conventional-commits --no-commit-hooks --yes
 
       # - name: Checkout
