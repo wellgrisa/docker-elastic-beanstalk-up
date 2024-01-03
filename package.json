@@ -19,7 +19,9 @@
   "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
     "@commitlint/config-lerna-scopes": "^18.4.3",
+    "husky": "^8.0.3",
     "lerna": "^8.0.1"
   }
 }
