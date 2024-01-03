@@ -1,6 +1,6 @@
 {
   "name": "ui",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1",
   "private": true,
   "sideEffects": false,
   "scripts": {
@@ -30,7 +30,7 @@
     "@typescript-eslint/parser": "^6.13.0",
     "eslint": "^8.47.0",
     "eslint-plugin-react": "^7.33.2",
-    "models": "^0.0.1-alpha.0",
+    "models": "^0.0.1",
     "typescript": "^5.1.6"
   },
   "engines": {
