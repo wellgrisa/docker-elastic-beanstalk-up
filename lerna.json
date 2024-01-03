@@ -2,7 +2,8 @@
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "command": {
     "version": {
-      "allowBranch": "include-lerna"
+      "allowBranch": "include-lerna",
+      "message": "chore(release): [skip ci] publish %s"
     }
   },
   "version": "independent",

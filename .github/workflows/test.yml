@@ -3,7 +3,6 @@ name: Test
 on:
   push:
     branches: ["include-lerna"]
-    tags: "*"
 
   workflow_dispatch:
 
