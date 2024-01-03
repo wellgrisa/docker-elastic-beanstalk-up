@@ -3,7 +3,7 @@ name: Test
 on:
   push:
     branches: ["include-lerna"]
-    tags-ignore: "*"
+    tags-ignore: "**"
 
   workflow_dispatch:
 
