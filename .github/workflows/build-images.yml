@@ -1,0 +1,34 @@
+name: Api
+
+on:
+  push:
+    tags: "*"
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    environment: docker-elastic-beanstalk-up
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # - name: Configure AWS
+      #   id: configure-aws
+      #   uses: ./.github/actions/configure-aws
+      #   with:
+      #     role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+
+      # - name: Sending API Docker image
+      #   env:
+      #     REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
+      #     REPOSITORY: docker-elastic-beanstalk-up
+      #   run: yarn lerna run build-docker --ignore models --since
+
+      - name: Deploy🤞
+        run: test-tag-deploy

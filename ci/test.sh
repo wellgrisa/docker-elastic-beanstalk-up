@@ -4,4 +4,6 @@ set -e
 
 echo ">>>"
 
-echo $GITHUB_REF_NAME
+PACKAGE_NAME=$(echo "$GITHUB_REF_NAME" | sed 's/@.*//')
+
+echo "<<<<
