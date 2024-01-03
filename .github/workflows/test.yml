@@ -18,18 +18,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Configure AWS
-        id: configure-aws
-        uses: ./.github/actions/configure-aws
-        with:
-          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
-      - run: yarn
+      - name: Version
+        run: yarn lerna version --conventional-commits --no-commit-hooks --yes
 
-      - name: Sending API Docker image
-        env:
-          REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
-          REPOSITORY: docker-elastic-beanstalk-up
-        run: yarn lerna run build-docker --ignore models --since
+      # - name: Configure AWS
+      #   id: configure-aws
+      #   uses: ./.github/actions/configure-aws
+      #   with:
+      #     role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+      # - run: yarn
+
+      # - name: Sending API Docker image
+      #   env:
+      #     REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
+      #     REPOSITORY: docker-elastic-beanstalk-up
+      #   run: yarn lerna run build-docker --ignore models --since
 
       # - name: Deploy🤞
       #   run: yarn deploy
