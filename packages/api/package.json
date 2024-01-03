@@ -1,6 +1,6 @@
 {
   "name": "api",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.js",
   "license": "MIT",
   "private": true,
@@ -20,7 +20,7 @@
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "eslint": "^8.55.0",
-    "models": "^0.0.2",
+    "models": "^0.0.3",
     "ts-node-dev": "^2.0.0",
     "tsc-alias": "^1.8.8",
     "typescript": "^5.2.2"
