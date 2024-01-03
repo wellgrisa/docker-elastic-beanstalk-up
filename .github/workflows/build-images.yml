@@ -2,9 +2,7 @@ name: Build Images
 
 on:
   push:
-    branches: ["include-lerna"]
-    tags:
-      - "**"
+    tags: "**"
 
   workflow_dispatch:
 
