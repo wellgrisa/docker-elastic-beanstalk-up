@@ -24,7 +24,7 @@ jobs:
           yarn
           git config user.name "${{ github.actor }}"
           git config user.email "wellington.grisa@gmail.com"
-          yarn lerna version --conventional-commits --no-commit-hooks --yes
+          yarn lerna version --conventional-commits --no-commit-hooks --yes --include-merged-tags
 
       # - name: Checkout
       #   uses: actions/checkout@v3
