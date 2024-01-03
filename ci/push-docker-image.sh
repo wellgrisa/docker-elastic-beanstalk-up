@@ -3,7 +3,9 @@
 # -e  Exit immediately if a command exits with a non-zero status.
 set -e
 
-TAG=$PACKAGE_NAME-$GITHUB_REF_NAME
+PACKAGE_NAME=$(echo "$GITHUB_REF_NAME" | sed 's/@.*//')
+
+TAG=$GITHUB_REF_NAME
 
 build_docker_image() {
   echo "Building docker image $REGISTRY/$REPOSITORY:$TAG"

@@ -18,17 +18,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # - name: Configure AWS
-      #   id: configure-aws
-      #   uses: ./.github/actions/configure-aws
-      #   with:
-      #     role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+      - name: Configure AWS
+        id: configure-aws
+        uses: ./.github/actions/configure-aws
+        with:
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
 
-      # - name: Sending API Docker image
-      #   env:
-      #     REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
-      #     REPOSITORY: docker-elastic-beanstalk-up
-      #   run: yarn lerna run build-docker --ignore models --since
-
-      - name: Deploy🤞
-        run: yarn test-tag-deploy
+      - name: Sending API Docker image
+        env:
+          REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
+          REPOSITORY: docker-elastic-beanstalk-up
+        run: yarn push-docker
