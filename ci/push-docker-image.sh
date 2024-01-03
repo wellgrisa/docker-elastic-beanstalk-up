@@ -11,8 +11,6 @@ TAG=$PACKAGE_NAME-$VERSION
 build_docker_image() {
   echo "Building docker image $REGISTRY/$REPOSITORY:$TAG"
 
-  cd ../../
-
   docker build -t $REGISTRY/$REPOSITORY:$TAG -f packages/$PACKAGE_NAME.Dockerfile .
 }
 
