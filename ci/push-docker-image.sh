@@ -10,10 +10,6 @@ build_docker_image() {
 
   cd ../../
 
-  pwd
-  
-  echo ">>>"
-
   docker build -t $REGISTRY/$REPOSITORY:$TAG -f packages/$PACKAGE_NAME.Dockerfile .
 }
 
