@@ -4,8 +4,9 @@
 set -e
 
 PACKAGE_NAME=$(echo "$GITHUB_REF_NAME" | sed 's/@.*//')
+VERSION="${GITHUB_REF_NAME##*@}"
 
-TAG=$GITHUB_REF_NAME
+TAG=$PACKAGE_NAME-$VERSION
 
 build_docker_image() {
   echo "Building docker image $REGISTRY/$REPOSITORY:$TAG"
