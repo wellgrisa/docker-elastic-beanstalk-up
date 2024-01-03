@@ -18,7 +18,9 @@ jobs:
     steps:
       - name: Version
         uses: actions/checkout@v3
-      - run: |
+      - env:
+          GH_TOKEN: ${{ secrets.DOCKER_ELASTIC_BEANSTALK_VERSION_UP }}
+        run: |
           yarn
           git config user.name "${{ github.actor }}"
           yarn lerna version --conventional-commits --no-commit-hooks --yes
