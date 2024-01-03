@@ -6,7 +6,7 @@ const app = express();
 app.use("/", (_req, res) =>
   res
     .status(200)
-    .send({ pong: "this pong is coming from api from api from a" } as Pong)
+    .send({ pong: "this pong is coming from api from api" } as Pong)
 );
 
 export { app };
