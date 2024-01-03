@@ -9,8 +9,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
-    name: deploy
+  building-image:
+    name: Building Image
     runs-on: ubuntu-latest
     environment: docker-elastic-beanstalk-up
     permissions:
