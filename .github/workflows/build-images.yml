@@ -2,6 +2,7 @@ name: Build Images
 
 on:
   push:
+    branches: ["include-lerna"]
     tags:
       - "**"
 
@@ -32,4 +33,4 @@ jobs:
       #   run: yarn lerna run build-docker --ignore models --since
 
       - name: Deploy🤞
-        run: test-tag-deploy
+        run: yarn test-tag-deploy
