@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.DOCKER_ELASTIC_BEANSTALK_VERSION_UP }}
 
       - name: Configure AWS
         id: configure-aws
@@ -31,8 +33,7 @@ jobs:
       #   run: yarn push-docker
 
       - name: Deploying to EB
-        uses: actions/checkout@v4
         env:
           REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
           REPOSITORY: docker-elastic-beanstalk-up
-      - run: yarn deploy
+        run: yarn deploy
