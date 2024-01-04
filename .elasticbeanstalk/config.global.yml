@@ -3,8 +3,6 @@ deploy:
 branch-defaults:
   ci:
     environment: docker-elastic-beanstalk-up-dev
-  include-lerna:
-    environment: docker-elastic-beanstalk-up-dev
 global:
   application_name: docker-elastic-beanstalk-up
   branch: null
