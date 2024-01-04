@@ -3,7 +3,9 @@
 set -e
 
 deploy_to_elastic() {
-  pip install awsebcli
+  # pip install awsebcli
+
+  git fetch -a
 
   LATEST_API_TAG=$(git describe --tags --match="api*" --abbrev=0)
   LATEST_UI_TAG=$(git describe --tags --match="ui*" --abbrev=0)
@@ -21,9 +23,9 @@ deploy_to_elastic() {
 
   cat docker-compose.yml
 
-  zip deploy.zip docker-compose.yml default.conf -r
+  # zip deploy.zip docker-compose.yml default.conf -r
 
-  eb deploy
+  # eb deploy
 }
 
 deploy_to_elastic
