@@ -37,10 +37,11 @@ jobs:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
 
       # - name: Sending API Docker image
-      #   env:
-      #     REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
-      #     REPOSITORY: docker-elastic-beanstalk-up
+
       #   run: yarn lerna run build-docker --ignore models --since
 
       - name: Update docker compose?
+        env:
+          REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
+          REPOSITORY: docker-elastic-beanstalk-up
         run: yarn update-docker-compose
