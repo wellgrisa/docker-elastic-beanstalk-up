@@ -26,11 +26,11 @@ jobs:
         with:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
 
-      # - name: Sending API Docker image
-      #   env:
-      #     REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
-      #     REPOSITORY: docker-elastic-beanstalk-up
-      #   run: yarn push-docker
+      - name: Sending API Docker image
+        env:
+          REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
+          REPOSITORY: docker-elastic-beanstalk-up
+        run: yarn push-docker
 
       - name: Deploying to EB
         env:

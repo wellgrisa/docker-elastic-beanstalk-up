@@ -23,7 +23,7 @@ deploy_to_elastic() {
 
   zip deploy.zip docker-compose.yml default.conf -r
 
-  eb deploy
+  eb deploy docker-elastic-beanstalk-up-dev
 }
 
 deploy_to_elastic
