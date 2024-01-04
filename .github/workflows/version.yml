@@ -34,8 +34,7 @@ jobs:
       #   run: yarn push-docker
 
       - name: Deploying to EB
-        uses: actions/checkout@v4
         env:
           REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
           REPOSITORY: docker-elastic-beanstalk-up
-      - run: yarn deploy
+        run: yarn deploy
