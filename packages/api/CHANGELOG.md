@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.48](https://github.com/well-doing/docker-elastic-beanstalk-up/compare/api@0.0.47...api@0.0.48) (2024-01-04)
+
+**Note:** Version bump only for package api
+
+
+
+
+
 ## [0.0.47](https://github.com/well-doing/docker-elastic-beanstalk-up/compare/api@0.0.46...api@0.0.47) (2024-01-04)
 
 **Note:** Version bump only for package api
