@@ -3,7 +3,7 @@
 set -e
 
 deploy_to_elastic() {
-  pip install awsebcli
+  # pip install awsebcli
 
   LATEST_API_TAG=$(git describe --tags --match="api*" --abbrev=0)
   LATEST_UI_TAG=$(git describe --tags --match="ui*" --abbrev=0)
@@ -21,20 +21,22 @@ deploy_to_elastic() {
 
   cat docker-compose.yml
 
-  zip deploy.zip docker-compose.yml default.conf -r
+  aws ecr describe-images --repository-name "$(echo "$REPOSITORY" | cut -d/ -f2)" --image-ids imageTag="$API_IMAGE"
 
-  while true; do
-    eb status docker-elastic-beanstalk-up-dev | grep -i status | grep -q "Ready"
-    if [ $? -eq 0 ]; then
-      echo "Elastic Beanstalk is ready!"
-      break
-    else
-      echo "Waiting for Elastic Beanstalk to be ready..."
-      sleep 20 
-    fi
-  done
+  # zip deploy.zip docker-compose.yml default.conf -r
 
-  eb deploy docker-elastic-beanstalk-up-dev
+  # while true; do
+  #   eb status docker-elastic-beanstalk-up-dev | grep -i status | grep -q "Ready"
+  #   if [ $? -eq 0 ]; then
+  #     echo "Elastic Beanstalk is ready!"
+  #     break
+  #   else
+  #     echo "Waiting for Elastic Beanstalk to be ready..."
+  #     sleep 20 
+  #   fi
+  # done
+
+  # eb deploy docker-elastic-beanstalk-up-dev
 }
 
 deploy_to_elastic
