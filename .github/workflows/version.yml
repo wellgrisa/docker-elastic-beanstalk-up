@@ -7,34 +7,22 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
-    name: Deploy
+  version:
+    if: ${{ !contains(github.event.head_commit.message, 'Publish') }}
+    name: Version and tag new versions
     runs-on: ubuntu-latest
     environment: docker-elastic-beanstalk-up
     permissions:
       id-token: write
       contents: write
     steps:
-      - name: Checkout
+      - name: Version
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.DOCKER_ELASTIC_BEANSTALK_VERSION_UP }}
           fetch-depth: 0
-          # fetch-tags: true
-
-      - name: Configure AWS
-        id: configure-aws
-        uses: ./.github/actions/configure-aws
-        with:
-          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
-
-      # - name: Sending API Docker image
-      #   env:
-      #     REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
-      #     REPOSITORY: docker-elastic-beanstalk-up
-      #   run: yarn push-docker
-
-      - name: Deploying to EB
-        env:
-          REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
-          REPOSITORY: docker-elastic-beanstalk-up
-        run: yarn deploy
+      - run: |
+          yarn
+          git config user.name "${{ github.actor }}"
+          git config user.email "wellington.grisa@gmail.com"
+          yarn lerna version --conventional-commits --no-commit-hooks --yes --include-merged-tags
