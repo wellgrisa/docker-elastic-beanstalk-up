@@ -12,6 +12,7 @@
     "api": "yarn --cwd packages/api",
     "ui": "yarn --cwd packages/ui",
     "push-docker": "bash ci/push-docker-image.sh",
+    "update-docker-compose": "bash ci/test.sh",
     "deploy": "bash ci/deploy.sh"
   },
   "license": "MIT",

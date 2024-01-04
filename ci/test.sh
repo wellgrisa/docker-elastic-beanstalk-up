@@ -4,10 +4,11 @@ set -e
 
 echo ">>>"
 
-PACKAGE_NAME=$(echo "$GITHUB_REF_NAME" | sed 's/@.*//')
+variable_name=$(git describe --tags --match="api*" --abbrev=0)
 
-echo $PACKAGE_NAME
-echo $GITHUB_REF
-echo $GITHUB_REF_NAME
+# Now 'variable_name' contains the result of the 'git describe' command
+echo "The result is: $variable_name"
+
+git describe --tags --match="api*"  --abbrev=0
 
 echo "<<<<"
