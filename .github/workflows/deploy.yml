@@ -36,4 +36,4 @@ jobs:
         env:
           REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
           REPOSITORY: docker-elastic-beanstalk-up
-      run: yarn deploy
+        run: yarn deploy
