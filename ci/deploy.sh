@@ -23,6 +23,17 @@ deploy_to_elastic() {
 
   zip deploy.zip docker-compose.yml default.conf -r
 
+  while true; do
+    eb status | grep -i status | grep -q "Ready"
+    if [ $? -eq 0 ]; then
+      echo "Elastic Beanstalk is ready!"
+      break
+    else
+      echo "Waiting for Elastic Beanstalk to be ready..."
+      sleep 20 # Adjust the sleep duration as needed
+    fi
+  done
+
   eb deploy docker-elastic-beanstalk-up-dev
 }
 
