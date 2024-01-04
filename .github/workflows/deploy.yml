@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  building-image:
-    name: Building Image
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     environment: docker-elastic-beanstalk-up
     permissions:
@@ -29,24 +29,8 @@ jobs:
           REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
           REPOSITORY: docker-elastic-beanstalk-up
         run: yarn push-docker
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    needs: building-image
-    permissions:
-      id-token: write
-      contents: write
-    steps:
-      - name: Version
-        uses: actions/checkout@v3
 
-      - name: Configure AWS
-        id: configure-aws
-        uses: ./.github/actions/configure-aws
-        with:
-          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
-
-      - name: Deploing to EB
+      - name: Deploying to EB
         env:
           REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
           REPOSITORY: docker-elastic-beanstalk-up

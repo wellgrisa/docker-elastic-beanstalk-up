@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  version:
     if: ${{ !contains(github.event.head_commit.message, 'Publish') }}
-    name: deploy
+    name: Version and tag new versions
     runs-on: ubuntu-latest
     environment: docker-elastic-beanstalk-up
     permissions:
