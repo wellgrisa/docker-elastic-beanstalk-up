@@ -26,16 +26,15 @@ jobs:
           git config user.name "${{ github.actor }}"
           git config user.email "wellington.grisa@gmail.com"
           yarn lerna version --conventional-commits --no-commit-hooks --yes --include-merged-tags
-          yarn update-docker-compose
 
       # - name: Checkout
       #   uses: actions/checkout@v3
 
-      # - name: Configure AWS
-      #   id: configure-aws
-      #   uses: ./.github/actions/configure-aws
-      #   with:
-      #     role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+      - name: Configure AWS
+        id: configure-aws
+        uses: ./.github/actions/configure-aws
+        with:
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
 
       # - name: Sending API Docker image
       #   env:
@@ -43,5 +42,5 @@ jobs:
       #     REPOSITORY: docker-elastic-beanstalk-up
       #   run: yarn lerna run build-docker --ignore models --since
 
-      # - name: Deploy🤞
-      #   run: yarn deploy
+      - name: Update docker compose?
+        run: yarn update-docker-compose
