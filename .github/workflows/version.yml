@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.DOCKER_ELASTIC_BEANSTALK_VERSION_UP }}
+          fetch-depth: 0
 
       - name: Configure AWS
         id: configure-aws
