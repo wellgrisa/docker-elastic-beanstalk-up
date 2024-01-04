@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  nginx-proxy:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - this-is-the-api-service-name
+      - this-is-the-ui-service-name
+
+  this-is-the-api-service-name:
+    image: ${API_IMAGE}
+
+  this-is-the-ui-service-name:
+    image: ${UI_IMAGE}
+    environment:
+      API_URL: http://this-is-the-api-service-name:5000
