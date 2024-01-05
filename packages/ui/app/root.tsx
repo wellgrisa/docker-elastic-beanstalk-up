@@ -35,7 +35,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <div id="sidebar">{`Ping > :D ${data.pong}`}</div>
+        <div
+          style={{ textAlign: "center" }}
+        >{`Ping (from version ${config.packageVersion}) > :D ${data.pong}`}</div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
