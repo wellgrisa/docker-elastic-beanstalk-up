@@ -40,28 +40,27 @@ deploy_to_elastic() {
 
   zip deploy.zip docker-compose.yml default.conf -r
 
-  while true; do
+  if !eb deploy docker-elastic-beanstalk-up-dev; then
     STATUS=$(eb status docker-elastic-beanstalk-up-dev | grep -i status | awk '{print $2}')
 
+    echo "Elastic Beanstalk Status: $STATUS"
+
     if [ "$STATUS" == "Ready" ]; then
-        echo "Elastic Beanstalk is ready!"
-        
-        eb deploy docker-elastic-beanstalk-up-dev || true
+      echo "Elastic Beanstalk is ready!"
 
-        if ! eb deploy docker-elastic-beanstalk-up-dev; then
-          echo "The Deployment is being made by the other package, but it's okay (in theory) as it uses the latest tags."
-        fi
+      if ! eb deploy docker-elastic-beanstalk-up-dev; then
+        echo "The Deployment is being made by the other package, but it's okay (in theory) as it uses the latest tags."
+      fi
 
-        break;
+      exit 0
     elif [ "$STATUS" == "Pending" ]; then
-        echo "Elastic Beanstalk is still pending... Exiting."
-        exit 0
+      echo "The Deployment is being made by the other package, but it's okay (in theory) as it uses the latest tags."
+      exit 0
     else
-        echo "Unknown status: $STATUS. Exiting with an error."
+      echo "Unknown status: $STATUS. Exiting with an error."
+      exit 1
     fi
-
-    sleep 10
-  done
+  fi
 }
 
 deploy_to_elastic

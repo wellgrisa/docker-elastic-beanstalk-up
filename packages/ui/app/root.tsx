@@ -35,7 +35,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <div id="sidebar">{`Ping > ${data.pong}`}</div>
+        <div id="sidebar">{`Ping > :D ${data.pong}`}</div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
