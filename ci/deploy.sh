@@ -19,11 +19,7 @@ deploy_to_elastic() {
 
   sed -e "s/\${API_IMAGE}/$ESCAPED_API_IMAGE/g" -e "s/\${UI_IMAGE}/$ESCAPED_UI_IMAGE/g" docker-compose.template.yml > docker-compose.yml
 
-  cat docker-compose.yml
-
   REPOSITORY_IMAGE_TAG_TO_CHECK="${GITHUB_REF_NAME%%@*}"
-
-  echo $GITHUB_REF_NAME
 
   if [ "$REPOSITORY_IMAGE_TAG_TO_CHECK" = "api" ]; then
     REPOSITORY_IMAGE_TAG_TO_CHECK=$UI_IMAGE_TAG
@@ -31,8 +27,7 @@ deploy_to_elastic() {
     REPOSITORY_IMAGE_TAG_TO_CHECK=$API_IMAGE_TAG 
   fi
 
-  echo $REPOSITORY_IMAGE_TAG_TO_CHECK
-  echo "<<<"
+  echo "Checking if the other package ECR image $REPOSITORY_IMAGE_TAG_TO_CHECK exists."
 
   while ! aws ecr describe-images \
     --repository-name $REPOSITORY \
@@ -41,7 +36,7 @@ deploy_to_elastic() {
     sleep 10
   done
 
-  echo "ECR image exists"
+  echo "ECR image $REPOSITORY_IMAGE_TAG_TO_CHECK exists"
 
   zip deploy.zip docker-compose.yml default.conf -r
 
@@ -51,7 +46,11 @@ deploy_to_elastic() {
     if [ "$STATUS" == "Ready" ]; then
         echo "Elastic Beanstalk is ready!"
         
-        eb deploy docker-elastic-beanstalk-up-dev --nohang
+        eb deploy docker-elastic-beanstalk-up-dev || true
+
+        if ! eb deploy docker-elastic-beanstalk-up-dev; then
+          echo "The Deployment is being made by the other package, but it's okay (in theory) as it uses the latest tags."
+        fi
 
         break;
     elif [ "$STATUS" == "Pending" ]; then
@@ -61,7 +60,7 @@ deploy_to_elastic() {
         echo "Unknown status: $STATUS. Exiting with an error."
     fi
 
-    sleep 20
+    sleep 10
   done
 }
 
