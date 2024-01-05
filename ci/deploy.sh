@@ -4,6 +4,9 @@ set -e
 
 deploy_to_elastic() {
   # pip install awsebcli
+  echo ">>>>>>>>"
+
+  sleep 2
 
   LATEST_API_TAG=$(git describe --tags --match="api*" --abbrev=0)
   LATEST_UI_TAG=$(git describe --tags --match="ui*" --abbrev=0)
