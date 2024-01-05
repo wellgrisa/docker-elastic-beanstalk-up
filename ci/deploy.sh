@@ -51,7 +51,7 @@ deploy_to_elastic() {
     if [ "$STATUS" == "Ready" ]; then
         echo "Elastic Beanstalk is ready!"
         
-        eb deploy docker-elastic-beanstalk-up-dev --no-hang
+        eb deploy docker-elastic-beanstalk-up-dev --nohang
 
         break;
     elif [ "$STATUS" == "Pending" ]; then
