@@ -66,9 +66,8 @@ deploy() {
   ESCAPED_API_IMAGE=$(echo "$API_IMAGE" | sed 's/[\/&]/\\&/g')
   ESCAPED_UI_IMAGE=$(echo "$UI_IMAGE" | sed 's/[\/&]/\\&/g')
   
-  check_ecr_images()
-
-  deploy_to_elastic()
+  check_ecr_images
+  deploy_to_elastic
 }
 
 deploy
