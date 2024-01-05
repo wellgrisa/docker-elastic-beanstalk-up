@@ -1,14 +1,15 @@
 name: Version
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches: ["main"]
 
   workflow_dispatch:
 
 jobs:
   version:
-    if: ${{ !contains(github.event.head_commit.message, 'Publish') }}
+    if: ${{ github.event.pull_request.merged == true && !contains(github.event.head_commit.message, 'Publish') }}
     name: Version and tag new versions
     runs-on: ubuntu-latest
     environment: docker-elastic-beanstalk-up
