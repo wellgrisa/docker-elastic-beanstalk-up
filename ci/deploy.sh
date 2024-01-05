@@ -2,26 +2,6 @@
 
 set -e
 
-deploy() {
-  pip install awsebcli
-  
-  LATEST_API_TAG=$(git describe --tags --match="api*" --abbrev=0)
-  LATEST_UI_TAG=$(git describe --tags --match="ui*" --abbrev=0)
-
-  API_IMAGE_TAG="${LATEST_API_TAG//@/-}"
-  UI_IMAGE_TAG="${LATEST_UI_TAG//@/-}"
-
-  API_IMAGE=$REGISTRY/$REPOSITORY:$API_IMAGE_TAG
-  UI_IMAGE=$REGISTRY/$REPOSITORY:$UI_IMAGE_TAG
-
-  ESCAPED_API_IMAGE=$(echo "$API_IMAGE" | sed 's/[\/&]/\\&/g')
-  ESCAPED_UI_IMAGE=$(echo "$UI_IMAGE" | sed 's/[\/&]/\\&/g')
-  
-  check_ecr_images()
-
-  deploy_to_elastic()
-}
-
 deploy_to_elastic() {
   sed -e "s/\${API_IMAGE}/$ESCAPED_API_IMAGE/g" -e "s/\${UI_IMAGE}/$ESCAPED_UI_IMAGE/g" docker-compose.template.yml > docker-compose.yml
   
@@ -54,9 +34,9 @@ check_ecr_images() {
   REPOSITORY_IMAGE_TAG_TO_CHECK="${GITHUB_REF_NAME%%@*}"
 
   if [ "$REPOSITORY_IMAGE_TAG_TO_CHECK" = "api" ]; then
-    REPOSITORY_IMAGE_TAG_TO_CHECK=$UI_IMAGE_TAG
+    REPOSITORY_IMAGE_TAG_TO_CHECK="$UI_IMAGE_TAG"
   else
-    REPOSITORY_IMAGE_TAG_TO_CHECK=$API_IMAGE_TAG 
+    REPOSITORY_IMAGE_TAG_TO_CHECK="$API_IMAGE_TAG"
   fi
 
   echo "Checking if the other package ECR image $REPOSITORY_IMAGE_TAG_TO_CHECK exists."
@@ -69,6 +49,26 @@ check_ecr_images() {
   done
 
   echo "ECR image $REPOSITORY_IMAGE_TAG_TO_CHECK exists"
+}
+
+deploy() {
+  pip install awsebcli
+  
+  LATEST_API_TAG=$(git describe --tags --match="api*" --abbrev=0)
+  LATEST_UI_TAG=$(git describe --tags --match="ui*" --abbrev=0)
+
+  API_IMAGE_TAG="${LATEST_API_TAG//@/-}"
+  UI_IMAGE_TAG="${LATEST_UI_TAG//@/-}"
+
+  API_IMAGE="$REGISTRY/$REPOSITORY:$API_IMAGE_TAG"
+  UI_IMAGE="$REGISTRY/$REPOSITORY:$UI_IMAGE_TAG"
+
+  ESCAPED_API_IMAGE=$(echo "$API_IMAGE" | sed 's/[\/&]/\\&/g')
+  ESCAPED_UI_IMAGE=$(echo "$UI_IMAGE" | sed 's/[\/&]/\\&/g')
+  
+  check_ecr_images()
+
+  deploy_to_elastic()
 }
 
 deploy
