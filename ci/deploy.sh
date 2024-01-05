@@ -58,8 +58,7 @@ deploy_to_elastic() {
         echo "Elastic Beanstalk is still pending... Exiting."
         exit 0
     else
-        echo "Unknown status. Exiting with an error."
-        exit 1
+        echo "Unknown status: $STATUS. Exiting with an error."
     fi
 
     sleep 10
