@@ -26,10 +26,13 @@ deploy_to_elastic() {
   echo $GITHUB_REF_NAME
 
   if [ "$REPOSITORY_IMAGE_TAG_TO_CHECK" = "api" ]; then
-    REPOSITORY_IMAGE_TAG_TO_CHECK=$LATEST_UI_TAG
+    REPOSITORY_IMAGE_TAG_TO_CHECK=$UI_IMAGE_TAG
   else
     REPOSITORY_IMAGE_TAG_TO_CHECK=$API_IMAGE_TAG 
   fi
+
+  echo $REPOSITORY_IMAGE_TAG_TO_CHECK
+  echo "<<<"
 
   while ! aws ecr describe-images \
     --repository-name $REPOSITORY \
@@ -45,6 +48,7 @@ deploy_to_elastic() {
 
     if [ "$STATUS" == "Ready" ]; then
         echo "Elastic Beanstalk is ready!"
+        break;
     elif [ "$STATUS" == "Pending" ]; then
         echo "Elastic Beanstalk is still pending... Exiting."
         exit 0
