@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  version:
+  checks:
     name: Version and tag new versions
     runs-on: ubuntu-latest
     environment: docker-elastic-beanstalk-up
