@@ -5,6 +5,7 @@
       "allowBranch": "include-lerna"
     }
   },
+  "ignoreChanges": ["**/node_modules/**", "**/.npmignore", "**/*.md"],
   "version": "independent",
   "npmClient": "yarn"
 }
