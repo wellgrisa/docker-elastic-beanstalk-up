@@ -8,16 +8,12 @@ on:
 
 jobs:
   checks:
-    name: Version and tag new versions
+    name: Testing changed packages
     runs-on: ubuntu-latest
     environment: docker-elastic-beanstalk-up
     steps:
       - name: Version
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.DOCKER_ELASTIC_BEANSTALK_VERSION_UP }}
           fetch-depth: 0
-      - run: |
-          yarn
-          git config user.name "${{ github.actor }}"
-          yarn lerna run test --since
+      - run: npx lerna run test --since
