@@ -41,6 +41,8 @@ deploy_to_elastic() {
     sleep 10
   done
 
+  echo "ECR image exists"
+
   zip deploy.zip docker-compose.yml default.conf -r
 
   while true; do
@@ -48,6 +50,9 @@ deploy_to_elastic() {
 
     if [ "$STATUS" == "Ready" ]; then
         echo "Elastic Beanstalk is ready!"
+        
+        eb deploy docker-elastic-beanstalk-up-dev
+
         break;
     elif [ "$STATUS" == "Pending" ]; then
         echo "Elastic Beanstalk is still pending... Exiting."
@@ -59,8 +64,6 @@ deploy_to_elastic() {
 
     sleep 10
   done
-
-  eb deploy docker-elastic-beanstalk-up-dev
 }
 
 deploy_to_elastic
