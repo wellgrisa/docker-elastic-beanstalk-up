@@ -8,6 +8,7 @@ on:
 
 jobs:
   deploy:
+    if: ${{ (contains(github.ref, 'ui') || contains(github.ref, 'api')) }}
     name: Deploy
     runs-on: ubuntu-latest
     environment: docker-elastic-beanstalk-up
