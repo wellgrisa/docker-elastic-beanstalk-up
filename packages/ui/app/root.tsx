@@ -1,9 +1,16 @@
-import { Pong } from 'models'
+import { Pong } from "models";
 
-import { json } from '@remix-run/node'
-import { useLoaderData, Links, LiveReload, Meta, Scripts, ScrollRestoration } from '@remix-run/react'
+import { json } from "@remix-run/node";
+import {
+  useLoaderData,
+  Links,
+  LiveReload,
+  Meta,
+  Scripts,
+  ScrollRestoration,
+} from "@remix-run/react";
 
-import { config } from './config'
+import { config } from "./config";
 
 export async function loader() {
   const response = await fetch(`${config.apiUrl}`, {
@@ -28,7 +35,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <div id="sidebar">{`Ping > ${data.pong}`}</div>
+        <div id="sidebar">{`Ping > :D ${data.pong}`}</div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

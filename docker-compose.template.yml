@@ -12,9 +12,9 @@ services:
       - this-is-the-ui-service-name
 
   this-is-the-api-service-name:
-    image: 184503795422.dkr.ecr.us-east-1.amazonaws.com/docker-elastic-beanstalk-up:api-ci
+    image: ${API_IMAGE}
 
   this-is-the-ui-service-name:
-    image: 184503795422.dkr.ecr.us-east-1.amazonaws.com/docker-elastic-beanstalk-up:ui-ci
+    image: ${UI_IMAGE}
     environment:
       API_URL: http://this-is-the-api-service-name:5000

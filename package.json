@@ -12,7 +12,16 @@
     "api": "yarn --cwd packages/api",
     "ui": "yarn --cwd packages/ui",
     "push-docker": "bash ci/push-docker-image.sh",
+    "update-docker-compose": "bash ci/test.sh",
     "deploy": "bash ci/deploy.sh"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@commitlint/config-lerna-scopes": "^18.4.3",
+    "husky": "^8.0.3",
+    "lerna": "^8.0.1"
+  }
 }

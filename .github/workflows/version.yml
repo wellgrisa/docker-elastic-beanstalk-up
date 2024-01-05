@@ -1,0 +1,29 @@
+name: Version
+
+on:
+  pull_request:
+    types: [closed]
+    branches: ["main"]
+
+  workflow_dispatch:
+
+jobs:
+  version:
+    if: ${{ github.event.pull_request.merged == true && !contains(github.event.head_commit.message, 'Publish') }}
+    name: Version and tag new versions
+    runs-on: ubuntu-latest
+    environment: docker-elastic-beanstalk-up
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Version
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.DOCKER_ELASTIC_BEANSTALK_VERSION_UP }}
+          fetch-depth: 0
+      - run: |
+          yarn
+          git config user.name "${{ github.actor }}"
+          git config user.email "wellington.grisa@gmail.com"
+          yarn lerna version --conventional-commits --conventional-graduate --no-commit-hooks --yes

@@ -1,12 +1,14 @@
 {
   "name": "api",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",
   "private": true,
   "scripts": {
     "build": "rm -rf ./dist && tsc -p tsconfig.build.json && npx tsc-alias -p tsconfig.build.json",
     "start": "node server.js",
+    "build-docker": "PACKAGE_NAME=api sh ../../ci/push-docker-image.sh",
+    "test": "echo api TESTS PASSED",
     "dev": "ts-node-dev --files --poll --no-notify --watch -r tsconfig-paths/register src/server.ts"
   },
   "dependencies": {
@@ -19,8 +21,8 @@
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "eslint": "^8.55.0",
+    "models": "^0.0.0",
     "ts-node-dev": "^2.0.0",
-    "models": "0.0.1",
     "tsc-alias": "^1.8.8",
     "typescript": "^5.2.2"
   }

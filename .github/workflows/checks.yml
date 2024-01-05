@@ -1,0 +1,19 @@
+name: Checks
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+  workflow_dispatch:
+
+jobs:
+  checks:
+    name: Testing changed packages
+    runs-on: ubuntu-latest
+    environment: docker-elastic-beanstalk-up
+    steps:
+      - name: Version
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: npx lerna run test --since

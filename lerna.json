@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "command": {
+    "version": {
+      "allowBranch": "main"
+    }
+  },
+  "version": "independent",
+  "npmClient": "yarn"
+}

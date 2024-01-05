@@ -1,7 +1,7 @@
 deploy:
   artifact: deploy.zip
 branch-defaults:
-  ci:
+  main:
     environment: docker-elastic-beanstalk-up-dev
 global:
   application_name: docker-elastic-beanstalk-up

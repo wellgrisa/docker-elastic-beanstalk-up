@@ -1,24 +1,25 @@
-name: Ui
+name: Deploy
 
 on:
   push:
-    branches: ["main"]
-    paths:
-      - "ui/**"
+    tags: "**"
 
   workflow_dispatch:
 
 jobs:
   deploy:
-    name: deploy
+    if: ${{ (contains(github.ref, 'ui') || contains(github.ref, 'api')) }}
+    name: Deploy
     runs-on: ubuntu-latest
     environment: docker-elastic-beanstalk-up
     permissions:
       id-token: write
-      contents: read
+      contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Configure AWS
         id: configure-aws
@@ -26,12 +27,14 @@ jobs:
         with:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
 
-      - name: Sending UI Docker image
+      - name: Sending API Docker image
         env:
-          REGISTRY: ${{ steps.configure-aws.outputs.registry }}
-          PACKAGE_NAME: ui
+          REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
           REPOSITORY: docker-elastic-beanstalk-up
         run: yarn push-docker
 
-      - name: Deploy🤞
+      - name: Deploying to EB
+        env:
+          REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
+          REPOSITORY: docker-elastic-beanstalk-up
         run: yarn deploy
