@@ -33,6 +33,8 @@ deploy_to_elastic() {
 
   echo $REPOSITORY_IMAGE_TAG_TO_CHECK
 
+  echo "<<><><><"
+
   while ! aws ecr describe-images \
     --repository-name $REPOSITORY \
     --image-ids imageTag="$REPOSITORY_IMAGE_TAG_TO_CHECK" >/dev/null 2>&1; do
