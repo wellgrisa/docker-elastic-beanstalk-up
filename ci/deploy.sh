@@ -61,7 +61,7 @@ deploy_to_elastic() {
         echo "Unknown status: $STATUS. Exiting with an error."
     fi
 
-    sleep 10
+    sleep 20
   done
 }
 
