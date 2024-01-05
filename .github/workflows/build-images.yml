@@ -1,16 +1,15 @@
-name: Deploy
+name: Build
 
 on:
-  workflow_run:
-    workflows: [Build]
-    types: [completed]
+  push:
+    tags: "**"
 
   workflow_dispatch:
 
 jobs:
-  deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    name: Deploy
+  build:
+    if: ${{ (contains(github.ref, 'ui') || contains(github.ref, 'api')) }}
+    name: Building Images
     runs-on: ubuntu-latest
     environment: docker-elastic-beanstalk-up
     permissions:
@@ -28,8 +27,8 @@ jobs:
         with:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
 
-      - name: Deploying to EB
+      - name: Sending API Docker image
         env:
           REGISTRY: ${{ steps.configure-aws.outputs.ecr-registry }}
           REPOSITORY: docker-elastic-beanstalk-up
-        run: yarn deploy
+        run: yarn push-docker
