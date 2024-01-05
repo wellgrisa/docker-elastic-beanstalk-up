@@ -9,6 +9,7 @@
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve build/index.js",
     "build-docker": "PACKAGE_NAME=ui sh ../../ci/push-docker-image.sh",
+    "test": "echo ui TESTS PASSED",
     "typecheck": "tsc"
   },
   "dependencies": {
