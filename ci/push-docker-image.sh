@@ -3,7 +3,7 @@
 # -e  Exit immediately if a command exits with a non-zero status.
 set -e
 
-PACKAGE_NAME=$(echo "$GITHUB_REF_NAME" | sed 's/@.*//')
+PACKAGE_NAME="${GITHUB_REF_NAME%%@*}"
 VERSION="${GITHUB_REF_NAME##*@}"
 
 TAG=$PACKAGE_NAME-$VERSION

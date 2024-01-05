@@ -21,7 +21,28 @@ deploy_to_elastic() {
 
   cat docker-compose.yml
 
-  aws ecr describe-images --repository-name "$(echo "$REPOSITORY" | cut -d/ -f2)" --image-ids imageTag="$API_IMAGE"
+  REPOSITORY_IMAGE_TAG_TO_CHECK="${GITHUB_REF_NAME%%@*}"
+
+  echo $GITHUB_REF_NAME
+
+  if [ "$REPOSITORY_IMAGE_TAG_TO_CHECK" = "api" ]; then
+    REPOSITORY_IMAGE_TAG_TO_CHECK=$LATEST_UI_TAG
+  else
+    REPOSITORY_IMAGE_TAG_TO_CHECK=$LATEST_API_TAG 
+  fi
+
+  echo $REPOSITORY_IMAGE_TAG_TO_CHECK
+
+  while ! aws ecr describe-images \
+    --repository-name $REPOSITORY \
+    --image-ids imageTag="$REPOSITORY_IMAGE_TAG_TO_CHECK" >/dev/null 2>&1; do
+    echo "ECR image does not exist. Retrying..."
+    sleep 1 # Adjust the sleep duration as needed
+  done
+
+  echo "ECR image exists."
+
+  # aws ecr describe-images --repository-name "$(echo "184503795422.dkr.ecr.us-east-1.amazonaws.com/docker-elastic-beanstalk-up" | cut -d/ -f2)" --image-ids imageTag="$API_IMAGE"
 
   # zip deploy.zip docker-compose.yml default.conf -r
 
