@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.43](https://github.com/well-doing/docker-elastic-beanstalk-up/compare/ui@0.0.42...ui@0.0.43) (2024-01-05)
+
+**Note:** Version bump only for package ui
+
+
+
+
+
 ## [0.0.42](https://github.com/well-doing/docker-elastic-beanstalk-up/compare/ui@0.0.41...ui@0.0.42) (2024-01-05)
 
 **Note:** Version bump only for package ui
