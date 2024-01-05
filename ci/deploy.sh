@@ -40,7 +40,7 @@ deploy_to_elastic() {
 
   zip deploy.zip docker-compose.yml default.conf -r
 
-  if !eb deploy docker-elastic-beanstalk-up-dev; then
+  if ! eb deploy docker-elastic-beanstalk-up-dev; then
     STATUS=$(eb status docker-elastic-beanstalk-up-dev | grep -i status | awk '{print $2}')
 
     echo "Elastic Beanstalk Status: $STATUS"
