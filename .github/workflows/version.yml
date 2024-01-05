@@ -2,7 +2,7 @@ name: Version
 
 on:
   push:
-    branches: ["include-lerna"]
+    branches: ["main"]
 
   workflow_dispatch:
 

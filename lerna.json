@@ -2,10 +2,9 @@
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "command": {
     "version": {
-      "allowBranch": "include-lerna"
+      "allowBranch": "main"
     }
   },
-  "ignoreChanges": ["**/node_modules/**", "**/.npmignore", "**/*.md"],
   "version": "independent",
   "npmClient": "yarn"
 }
