@@ -25,5 +25,5 @@ jobs:
       - run: |
           yarn
           git config user.name "${{ github.actor }}"
-          git config user.email "wellington.grisa@gmail.com"
+          git config user.email "${{ secrets.EMAIL }}"
           yarn lerna version --conventional-commits --no-commit-hooks --yes
