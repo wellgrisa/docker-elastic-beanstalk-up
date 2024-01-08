@@ -5,7 +5,7 @@ const app = express();
 
 app.use("/", (_req, res) =>
   res.status(200).send({
-    pong: `this pong is coming from api (from version ${process.env.npm_package_version}) `,
+    pong: `this pong is coming from api :D (from version ${process.env.npm_package_version}) `,
   } as Pong)
 );
 
