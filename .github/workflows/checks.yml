@@ -2,8 +2,7 @@ name: Checks
 
 on:
   pull_request:
-    types: [closed]
-    branches: ["main"]
+    types: [opened, synchronize]
 
   workflow_dispatch:
 
