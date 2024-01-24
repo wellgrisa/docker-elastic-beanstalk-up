@@ -5,7 +5,7 @@ set -e
 deploy_to_elastic() {
   sed -e "s/\${API_IMAGE}/$ESCAPED_API_IMAGE/g" -e "s/\${UI_IMAGE}/$ESCAPED_UI_IMAGE/g" docker-compose.template.yml > docker-compose.yml
   
-  zip deploy.zip docker-compose.yml default.conf -r
+  zip deploy.zip docker-compose.yml default.conf .ebextensions -r
 
   if ! eb deploy docker-elastic-beanstalk-up-dev; then
     STATUS=$(eb status docker-elastic-beanstalk-up-dev | grep -i status | awk '{print $2}')
